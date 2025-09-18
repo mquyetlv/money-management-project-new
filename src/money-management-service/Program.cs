@@ -1,7 +1,9 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using FluentValidation;
+using Microsoft.EntityFrameworkCore;
 using money_management_service.Data;
 using money_management_service.Services;
 using money_management_service.Services.Interfaces;
+using money_management_service.Validations;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -9,7 +11,9 @@ var builder = WebApplication.CreateBuilder(args);
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
 builder.Services.AddDbContext<ApplicationDBContext>(options => options.UseSqlServer(connectionString));
 
-// Register Dependency injection
+builder.Services.AddValidatorsFromAssemblyContaining<CommandValidation>();
+
+// Register Service
 builder.Services.AddScoped<ICommandService, CommandService>();
 
 // Add services to the container.

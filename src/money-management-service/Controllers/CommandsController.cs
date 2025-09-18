@@ -1,5 +1,6 @@
 ﻿
 
+using FluentValidation;
 using Microsoft.AspNetCore.Mvc;
 using money_management_service.Core;
 using money_management_service.Dtos.Command;
@@ -10,11 +11,13 @@ namespace money_management_service.Controllers
 {
     public class CommandsController : BaseController
     {
-        private ICommandService _commandService;
+        private readonly ICommandService _commandService;
+        private readonly IValidator<CreateUpdateCommandRequestDTO> _validator;
 
-        public CommandsController(ICommandService commandService)
+        public CommandsController(ICommandService commandService, IValidator<CreateUpdateCommandRequestDTO> validator)
         {
             _commandService = commandService;
+            _validator = validator;
         }
 
         [HttpGet]
@@ -34,6 +37,14 @@ namespace money_management_service.Controllers
         [HttpPost]
         public async Task<ActionResult<ApiResponse<Command>>> CreateCommand(CreateUpdateCommandRequestDTO dto)
         {
+
+            var result = await _validator.ValidateAsync(dto);
+
+            if (!result.IsValid)
+            {
+                return Ok(result.Errors);
+            }
+
             var command = new Command();
             command.Name = dto.Name;
             var commandCreated = await _commandService.CreateAsync(command);
