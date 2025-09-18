@@ -1,6 +1,6 @@
 ﻿namespace money_management_service.Core
 {
-    public class ApiResponse<T>
+    public class PagedApiResponse<T>
     {
         public string Status { get; set; }
 
@@ -8,16 +8,21 @@
 
         public T? Data { get; set; }
 
-        public ApiResponse() {
+        public Pagination Pagination { get; set; }
+
+        public PagedApiResponse()
+        {
             Status = string.Empty;
             Message = string.Empty;
+            Pagination = new Pagination();
         }
 
-        public ApiResponse(string status, string message, T data) 
+        public PagedApiResponse(string status, string message, T data, Pagination pagination)
         {
             Status = status;
             Message = message;
             Data = data;
+            Pagination = pagination ?? new Pagination();
         }
     }
 }

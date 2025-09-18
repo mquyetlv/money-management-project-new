@@ -14,11 +14,11 @@
             Total = 0;
         }
 
-        public Pagination(int Page, int Size, int Total)
+        public Pagination(int page, int size, int total)
         {
-            this.Page = Page;
-            this.Size = Size;
-            this.Total = Total;
+            Page = page;
+            Size = size;
+            Total = total;
         }
     }
 }

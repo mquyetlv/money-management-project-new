@@ -17,11 +17,11 @@ namespace money_management_service.Core
             Details = new List<ErrorDetail>();
         }
 
-        public ErrorResponse(string Status, string Message, List<ErrorDetail> Details)
+        public ErrorResponse(string status, string message, List<ErrorDetail> details)
         {
-            this.Status = Status;
-            this.Message = Message;
-            this.Details = Details ?? new List<ErrorDetail>();
+            Status = status;
+            Message = message;
+            Details = details ?? new List<ErrorDetail>();
         }
     }
 
@@ -37,10 +37,10 @@ namespace money_management_service.Core
             Error = string.Empty;
         }
 
-        public ErrorDetail(string Field, string Error)
+        public ErrorDetail(string field, string error)
         {
-            this.Field = Field;
-            this.Error = Error;
+            Field = field;
+            Error = error;
         }
     }
 }
