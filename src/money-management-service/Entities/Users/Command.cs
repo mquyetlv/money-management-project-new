@@ -12,7 +12,5 @@ namespace money_management_service.Entities.Users
         public string Name { get; set; }
 
         public ICollection<Function> Functions { get; set; }
-
-        //public ICollection<FunctionCommand> FunctionCommands { get; set; }
     }
 }

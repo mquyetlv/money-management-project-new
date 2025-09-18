@@ -33,7 +33,5 @@ namespace money_management_service.Entities.Users
         public DateTime DateOfBirth { get; set; }
 
         public ICollection<Role> Roles { get; set; }
-
-        //public ICollection<UserRole> UserRoles { get; set; }
     }
 }

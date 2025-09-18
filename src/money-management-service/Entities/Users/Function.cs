@@ -16,10 +16,6 @@ namespace money_management_service.Entities.Users
 
         public ICollection<Command> Commands { get; set; }
 
-        //public ICollection<FunctionCommand> FunctionCommands { get; set; }
-
         public ICollection<Role> roles { get; set; }
-
-        //public ICollection<Permission> Permissions { get; set; }
     }
 }

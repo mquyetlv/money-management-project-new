@@ -23,29 +23,14 @@ namespace money_management_service.Data
                         .HasDefaultValueSql("NEWID()");
                 }
             }
-
-            //modelBuilder.Entity<FunctionCommand>()
-            //    .HasKey((entity) => new { entity.FunctionId, entity.CommandId });
-
-            //modelBuilder.Entity<Permission>()
-            //    .HasKey(entity => new { entity.RoleId, entity.FunctionId });
-
-            //modelBuilder.Entity<UserRole>()
-                //.HasKey(entity => new { entity.RoleId, entity.UserId });
         }
 
         public DbSet<Command> Commands { get; set; }
 
         public DbSet<Function> Functions { get; set; }
 
-        //public DbSet<FunctionCommand> FunctionCommand { get; set; }
-
-        //public DbSet<Permission> Permissions { get; set; }
-
         public DbSet<Role> Roles { get; set; }
 
         public DbSet<User> Users { get; set; }
-
-        //public DbSet<UserRole> UserRole { get; set; }
     }
 }
