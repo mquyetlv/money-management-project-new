@@ -1,11 +1,16 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using money_management_service.Data;
+using money_management_service.Services;
+using money_management_service.Services.Interfaces;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Đăng ký DbContext
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
 builder.Services.AddDbContext<ApplicationDBContext>(options => options.UseSqlServer(connectionString));
+
+// Register Dependency injection
+builder.Services.AddScoped<ICommandService, CommandService>();
 
 // Add services to the container.
 
