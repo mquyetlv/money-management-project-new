@@ -25,6 +25,18 @@ namespace money_management_service.Data
             }
         }
 
+        public override int SaveChanges()
+        {
+            UpdateAuditFields();
+            return base.SaveChanges();
+        }
+
+        public override async Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
+        {
+            UpdateAuditFields();
+            return await base.SaveChangesAsync(cancellationToken);
+        }
+
         public DbSet<Command> Commands { get; set; }
 
         public DbSet<Function> Functions { get; set; }
@@ -32,5 +44,31 @@ namespace money_management_service.Data
         public DbSet<Role> Roles { get; set; }
 
         public DbSet<User> Users { get; set; }
+
+        private void UpdateAuditFields()
+        {
+            var entries = ChangeTracker
+                .Entries<BaseEntity>()
+                .Where(e => e.State == EntityState.Added || e.State == EntityState.Modified);
+
+            var currentUsername = "quyetlv";
+
+            foreach (var entry in entries)
+            {
+                if (entry.State == EntityState.Added)
+                {
+                    entry.Entity.CreatedDate = DateTime.UtcNow;
+                    entry.Entity.CreatedBy = currentUsername;
+                    entry.Entity.UpdatedDate = DateTime.UtcNow;
+                    entry.Entity.UpdatedBy = currentUsername;
+                }
+
+                else if (entry.State == EntityState.Modified)
+                {
+                    entry.Entity.UpdatedDate = DateTime.UtcNow;
+                    entry.Entity.UpdatedBy = currentUsername;
+                }
+            }
+        }
     }
 }
