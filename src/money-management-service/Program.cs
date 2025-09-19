@@ -15,7 +15,7 @@ builder.Services.AddDbContext<ApplicationDBContext>(options => options.UseSqlSer
 builder.Services.AddValidatorsFromAssemblyContaining<CommandValidation>();
 
 // Register Service
-builder.Services.AddScoped<ICommandsService, CommandService>();
+builder.Services.AddScoped<ICommandsService, CommandsService>();
 
 // Add services to the container.
 

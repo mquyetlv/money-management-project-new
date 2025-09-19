@@ -74,7 +74,7 @@ namespace money_management_service.Controllers
         public async Task<ActionResult<ApiResponse<Command>>> UpdateCommand(Guid id, [FromBody] CreateUpdateCommandRequestDTO dto)
         {
             Dictionary<string, object> updateFiels = new Dictionary<string, object>();
-            updateFiels.Add("Name", dto.Name);
+            updateFiels.Add(nameof(Command.Name), dto.Name);
 
             var commandUpdated = await _commandService.UpdateAsync(id, updateFiels);
 
