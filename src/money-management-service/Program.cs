@@ -12,10 +12,13 @@ var builder = WebApplication.CreateBuilder(args);
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
 builder.Services.AddDbContext<ApplicationDBContext>(options => options.UseSqlServer(connectionString));
 
+// Đăng ký fluent Validation
 builder.Services.AddValidatorsFromAssemblyContaining<CommandValidation>();
+builder.Services.AddValidatorsFromAssemblyContaining<FunctionValidation>();
 
 // Register Service
 builder.Services.AddScoped<ICommandsService, CommandsService>();
+builder.Services.AddScoped<IFunctionsService, FunctionsService>();
 
 // Add services to the container.
 
