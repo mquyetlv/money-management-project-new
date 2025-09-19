@@ -1,7 +1,9 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using money_management_service.Core;
 using money_management_service.Data;
 using money_management_service.Exceptions;
 using money_management_service.Services.Interfaces;
+using System.Linq.Dynamic.Core;
 
 namespace money_management_service.Services
 {
@@ -19,6 +21,31 @@ namespace money_management_service.Services
         public async Task<List<TEntity>> GetAllAsync()
         {
             return await _dbSet.ToListAsync();
+        }
+
+        public async Task<(int total, List<TEntity> data)> GetAllWithPagingAsync(CustomQuery<TEntity> customQuery)
+        {
+            var query = _dbSet.AsQueryable();
+
+            if (customQuery.Filters.Count > 0)
+            {
+                customQuery.Filters.ForEach(filter => query = query.Where(filter));
+            }
+
+            int total = await query.CountAsync();
+
+            query = query.Skip((customQuery.Page) * customQuery.Size).Take(customQuery.Size);
+
+            if (customQuery.OrderBy != null)
+            {
+               query = customQuery.IsDescending ?? false
+                    ? query.OrderBy($"{customQuery.OrderBy} descending")
+                    : query.OrderBy(customQuery.OrderBy);
+            }
+
+            List<TEntity> data = await query.ToListAsync();
+
+            return (total, data);
         }
 
         public async Task<TEntity> GetByIdAsync(TKey id)
