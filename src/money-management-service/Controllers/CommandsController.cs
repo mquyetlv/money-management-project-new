@@ -4,8 +4,10 @@ using FluentValidation;
 using Microsoft.AspNetCore.Mvc;
 using money_management_service.Core;
 using money_management_service.Dtos.Command;
+using money_management_service.DTOs.Command;
 using money_management_service.Entities.Users;
 using money_management_service.Services.Interfaces;
+using System.Linq.Expressions;
 
 namespace money_management_service.Controllers
 {
@@ -21,10 +23,26 @@ namespace money_management_service.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<ApiResponse<List<Command>>>> GetAllCommands()
+        public async Task<ActionResult<ApiResponse<List<Command>>>> GetAllCommands([FromQuery] SearchCommandRequestDTO searchCommandRequestDTO)
         {
-            var commands = await _commandService.GetAllAsync();
-            return Ok(new PagedApiResponse<List<Command>>("200", "Success", commands, new Pagination(0, 10, 100)));
+            CustomQuery<Command> customQuery = new CustomQuery<Command>
+            {
+                Filters = new List<Expression<Func<Command, bool>>>
+                {
+                    (entity) => entity.Name.Contains((searchCommandRequestDTO.Name ?? ""))
+                },
+                OrderBy = searchCommandRequestDTO.OrderBy,
+                IsDescending = searchCommandRequestDTO.IsDescending,
+                Page = searchCommandRequestDTO.Page,
+                Size = searchCommandRequestDTO.Size,
+            };
+            var commands = await _commandService.GetAllWithPagingAsync(customQuery);
+            return Ok(new PagedApiResponse<List<Command>>(
+                "200", 
+                "Success", 
+                commands.data, 
+                new Pagination(searchCommandRequestDTO.Page, searchCommandRequestDTO.Size, commands.total))
+            );
         }
 
         [HttpGet("{id}")]
@@ -42,7 +60,8 @@ namespace money_management_service.Controllers
 
             if (!result.IsValid)
             {
-                return Ok(result.Errors);
+                List<ErrorDetail> errorsDetail = result.Errors.Select(err => new ErrorDetail(err.PropertyName, err.ErrorMessage)).ToList();
+                return BadRequest(new ErrorResponse("400", "Validate invalid", errorsDetail));
             }
 
             var command = new Command();
