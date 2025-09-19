@@ -2,7 +2,7 @@
 
 namespace money_management_service.Services.Interfaces
 {
-    public interface ICommandService : IBaseService<Command>
+    public interface ICommandsService : IBaseService<Command>
     {
     }
 }

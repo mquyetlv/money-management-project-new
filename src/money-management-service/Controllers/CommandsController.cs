@@ -13,10 +13,10 @@ namespace money_management_service.Controllers
 {
     public class CommandsController : BaseController
     {
-        private readonly ICommandService _commandService;
+        private readonly ICommandsService _commandService;
         private readonly IValidator<CreateUpdateCommandRequestDTO> _validator;
 
-        public CommandsController(ICommandService commandService, IValidator<CreateUpdateCommandRequestDTO> validator)
+        public CommandsController(ICommandsService commandService, IValidator<CreateUpdateCommandRequestDTO> validator)
         {
             _commandService = commandService;
             _validator = validator;
@@ -29,7 +29,7 @@ namespace money_management_service.Controllers
             {
                 Filters = new List<Expression<Func<Command, bool>>>
                 {
-                    (entity) => entity.Name.Contains((searchCommandRequestDTO.Name ?? ""))
+                    (entity) => entity.Name.Contains(searchCommandRequestDTO.Name ?? "")
                 },
                 OrderBy = searchCommandRequestDTO.OrderBy,
                 IsDescending = searchCommandRequestDTO.IsDescending,

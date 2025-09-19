@@ -4,8 +4,8 @@ using money_management_service.Services.Interfaces;
 
 namespace money_management_service.Services
 {
-    public class CommandService : BaseService<Command>, ICommandService
+    public class CommandsService : BaseService<Command>, ICommandsService
     {
-        public CommandService(ApplicationDBContext dbContext) : base(dbContext) { }
+        public CommandsService(ApplicationDBContext dbContext) : base(dbContext) { }
     }
 }
