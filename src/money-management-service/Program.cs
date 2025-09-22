@@ -15,10 +15,12 @@ builder.Services.AddDbContext<ApplicationDBContext>(options => options.UseSqlSer
 // Đăng ký fluent Validation
 builder.Services.AddValidatorsFromAssemblyContaining<CommandValidation>();
 builder.Services.AddValidatorsFromAssemblyContaining<FunctionValidation>();
+builder.Services.AddValidatorsFromAssemblyContaining<RoleValidator>();
 
 // Register Service
 builder.Services.AddScoped<ICommandsService, CommandsService>();
 builder.Services.AddScoped<IFunctionsService, FunctionsService>();
+builder.Services.AddScoped<IRolesService, RolesService>();
 
 // Add services to the container.
 
