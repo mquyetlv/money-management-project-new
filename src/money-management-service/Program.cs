@@ -16,11 +16,13 @@ builder.Services.AddDbContext<ApplicationDBContext>(options => options.UseSqlSer
 builder.Services.AddValidatorsFromAssemblyContaining<CommandValidation>();
 builder.Services.AddValidatorsFromAssemblyContaining<FunctionValidation>();
 builder.Services.AddValidatorsFromAssemblyContaining<RoleValidator>();
+builder.Services.AddValidatorsFromAssemblyContaining<UserValidator>();
 
 // Register Service
 builder.Services.AddScoped<ICommandsService, CommandsService>();
 builder.Services.AddScoped<IFunctionsService, FunctionsService>();
 builder.Services.AddScoped<IRolesService, RolesService>();
+builder.Services.AddScoped<IUsersService, UsersService>();
 
 // Add services to the container.
 
