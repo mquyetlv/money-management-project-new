@@ -15,7 +15,7 @@ namespace money_management_service.Entities.Users
         [EmailAddress]
         public string Email { get; set; }
 
-        [MaxLength(25)]
+        [MaxLength(100)]
         [MinLength(6)]
         [Required]
         public string Password { get; set; }

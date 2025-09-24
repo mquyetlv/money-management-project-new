@@ -10,6 +10,9 @@ namespace money_management_service.Entities.Users
         [Required]
         public string Name { get; set; }
 
+        [MaxLength(500)]
+        public string? Description { get; set; }
+
         public ICollection<User> Users { get; set; }
 
         public ICollection<Function> Functions { get; set; }
