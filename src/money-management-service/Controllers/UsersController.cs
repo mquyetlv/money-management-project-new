@@ -53,7 +53,7 @@ namespace money_management_service.Controllers
             {
                 List<ErrorDetail> errorDetails = result.Errors.Select(err => new ErrorDetail(err.PropertyName, err.ErrorMessage)).ToList();
                 return BadRequest(new ErrorResponse("400", "Body invalid", errorDetails));
-            }
+            } 
 
             User user = new User();
             user.UserName = createUserRequestDto.UserName;
