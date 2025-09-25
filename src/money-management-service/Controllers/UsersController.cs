@@ -26,10 +26,10 @@ namespace money_management_service.Controllers
             {
                 Filters = new List<Expression<Func<User, bool>>>
                 {
-                    entity => entity.UserName.Contains(searchUserDto.UserName),
-                    entity => entity.FirstName.Contains(searchUserDto.FirstName),
-                    entity => entity.LastName.Contains(searchUserDto.LastName),
-                    entity => entity.Email.Contains(searchUserDto.Email),
+                    entity => entity.UserName.Contains(searchUserDto.UserName ?? ""),
+                    entity => entity.FirstName.Contains(searchUserDto.FirstName ?? ""),
+                    entity => entity.LastName.Contains(searchUserDto.LastName ?? ""),
+                    entity => entity.Email.Contains(searchUserDto.Email ?? ""),
                 }
             };
 
@@ -46,19 +46,20 @@ namespace money_management_service.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult<ApiResponse<User>>> CreateUser(CreateUserRequestDTO createUserRequestDto)
+        public async Task<ActionResult<ApiResponse<User>>> CreateUser([FromBody] CreateUserRequestDTO createUserRequestDto)
         {
-            var result = _validator.Validate(createUserRequestDto);
+            var result = await _validator.ValidateAsync(createUserRequestDto);
             if (!result.IsValid)
             {
                 List<ErrorDetail> errorDetails = result.Errors.Select(err => new ErrorDetail(err.PropertyName, err.ErrorMessage)).ToList();
                 return BadRequest(new ErrorResponse("400", "Body invalid", errorDetails));
-            } 
+            }
 
+            string hashedPassword = BCrypt.Net.BCrypt.HashPassword(createUserRequestDto.Password);
             User user = new User();
             user.UserName = createUserRequestDto.UserName;
             user.Email = createUserRequestDto.Email;
-            user.Password = createUserRequestDto.Password;
+            user.Password = hashedPassword;
             user.FirstName = createUserRequestDto.FirstName;
             user.LastName = createUserRequestDto.LastName;
             user.DateOfBirth = createUserRequestDto.DateOfBirth;
