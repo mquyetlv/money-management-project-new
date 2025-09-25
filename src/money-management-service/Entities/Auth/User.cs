@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using money_management_service.Entities.Auth;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace money_management_service.Entities.Users
@@ -33,5 +34,7 @@ namespace money_management_service.Entities.Users
         public DateTime DateOfBirth { get; set; }
 
         public ICollection<Role> Roles { get; set; }
+
+        public ICollection<RefreshToken> RefreshTokens { get; set; }
     }
 }

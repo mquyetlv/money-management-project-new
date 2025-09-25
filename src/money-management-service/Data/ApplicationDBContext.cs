@@ -48,6 +48,8 @@ namespace money_management_service.Data
 
         public DbSet<SigningKey> SigningKeys { get; set; }
 
+        public DbSet<RefreshToken> RefreshTokens { get; set; }
+
         private void UpdateAuditFields()
         {
             var entries = ChangeTracker
