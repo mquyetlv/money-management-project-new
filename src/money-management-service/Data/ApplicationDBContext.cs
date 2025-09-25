@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using money_management_service.Entities;
+using money_management_service.Entities.Auth;
 using money_management_service.Entities.Users;
 
 namespace money_management_service.Data
@@ -44,6 +45,8 @@ namespace money_management_service.Data
         public DbSet<Role> Roles { get; set; }
 
         public DbSet<User> Users { get; set; }
+
+        public DbSet<SigningKey> SigningKeys { get; set; }
 
         private void UpdateAuditFields()
         {
