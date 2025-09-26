@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
+using money_management_service.Configurations.DependencyInjection;
 using money_management_service.Data;
 using money_management_service.Jobs;
 using money_management_service.Middlewares;
@@ -54,11 +55,7 @@ builder.Services.AddValidatorsFromAssemblyContaining<RoleValidator>();
 builder.Services.AddValidatorsFromAssemblyContaining<UserValidator>();
 
 // Register Service
-builder.Services.AddScoped<ICommandsService, CommandsService>();
-builder.Services.AddScoped<IFunctionsService, FunctionsService>();
-builder.Services.AddScoped<IRolesService, RolesService>();
-builder.Services.AddScoped<IUsersService, UsersService>();
-builder.Services.AddScoped<IAuthencationService, AuthencationService>();
+builder.Services.AddApplicationServices();
 
 // Add services to the container.
 
