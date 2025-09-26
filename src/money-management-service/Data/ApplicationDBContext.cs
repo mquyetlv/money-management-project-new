@@ -13,6 +13,8 @@ namespace money_management_service.Data
         {
             base.OnModelCreating(modelBuilder);
 
+            modelBuilder.Entity<RoleFunctionCommand>().HasKey(entity => new { entity.RoleId, entity.FunctionId, entity.CommandId });
+
             var baseType = typeof(BaseEntity);
 
             foreach (var entityType in modelBuilder.Model.GetEntityTypes())
@@ -49,6 +51,8 @@ namespace money_management_service.Data
         public DbSet<SigningKey> SigningKeys { get; set; }
 
         public DbSet<RefreshToken> RefreshTokens { get; set; }
+
+        public DbSet<RoleFunctionCommand> RoleFunctionCommands { get; set; }
 
         private void UpdateAuditFields()
         {

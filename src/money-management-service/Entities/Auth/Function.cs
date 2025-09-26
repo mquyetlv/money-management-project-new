@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using money_management_service.Entities.Auth;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace money_management_service.Entities.Users
@@ -14,8 +15,6 @@ namespace money_management_service.Entities.Users
         [Required]
         public string Url { get; set; }
 
-        public ICollection<Command> Commands { get; set; }
-
-        public ICollection<Role> roles { get; set; }
+        public ICollection<RoleFunctionCommand> RoleFunctionCommands { get; set; }
     }
 }
