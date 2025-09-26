@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using money_management_service.Entities;
 using money_management_service.Entities.Auth;
+using money_management_service.Entities.Transaction;
 using money_management_service.Entities.Users;
 
 namespace money_management_service.Data
@@ -53,6 +54,14 @@ namespace money_management_service.Data
         public DbSet<RefreshToken> RefreshTokens { get; set; }
 
         public DbSet<RoleFunctionCommand> RoleFunctionCommands { get; set; }
+
+        public DbSet<TransactionType> TransactionTypes { get; set; }
+
+        public DbSet<Transaction> Transactions { get; set; }
+
+        public DbSet<Investment> Investments { get; set; }
+
+        public DbSet<Accounts> Accounts { get; set; }
 
         private void UpdateAuditFields()
         {
