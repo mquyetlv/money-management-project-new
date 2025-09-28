@@ -6,8 +6,6 @@ using money_management_service.Configurations.DependencyInjection;
 using money_management_service.Data;
 using money_management_service.Jobs;
 using money_management_service.Middlewares;
-using money_management_service.Services;
-using money_management_service.Services.Interfaces;
 using money_management_service.Validations;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -53,6 +51,7 @@ builder.Services.AddValidatorsFromAssemblyContaining<CommandValidation>();
 builder.Services.AddValidatorsFromAssemblyContaining<FunctionValidation>();
 builder.Services.AddValidatorsFromAssemblyContaining<RoleValidator>();
 builder.Services.AddValidatorsFromAssemblyContaining<UserValidator>();
+builder.Services.AddValidatorsFromAssemblyContaining<CreateUpdateTransactionTypeValidator>();
 
 // Register Service
 builder.Services.AddApplicationServices();
