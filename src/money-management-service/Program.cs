@@ -1,12 +1,11 @@
-﻿using FluentValidation;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
+﻿using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using money_management_service.Configurations.DependencyInjection;
+using money_management_service.Configurations.Validation;
 using money_management_service.Data;
 using money_management_service.Jobs;
 using money_management_service.Middlewares;
-using money_management_service.Validations;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -47,11 +46,7 @@ builder.Services
 
 
 // Đăng ký fluent Validation
-builder.Services.AddValidatorsFromAssemblyContaining<CommandValidation>();
-builder.Services.AddValidatorsFromAssemblyContaining<FunctionValidation>();
-builder.Services.AddValidatorsFromAssemblyContaining<RoleValidator>();
-builder.Services.AddValidatorsFromAssemblyContaining<UserValidator>();
-builder.Services.AddValidatorsFromAssemblyContaining<CreateUpdateTransactionTypeValidator>();
+builder.Services.AddApplicationValidator();
 
 // Register Service
 builder.Services.AddApplicationServices();
