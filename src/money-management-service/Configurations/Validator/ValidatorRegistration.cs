@@ -13,6 +13,7 @@ namespace money_management_service.Configurations.Validation
             services.AddValidatorsFromAssemblyContaining<UserValidator>();
             services.AddValidatorsFromAssemblyContaining<CreateUpdateTransactionTypeValidator>();
             services.AddValidatorsFromAssemblyContaining<CreateUpdateInvestmentValidator>();
+            services.AddValidatorsFromAssemblyContaining<CreateUpdateAccountsValidator>();
             return services;
         }
     }
