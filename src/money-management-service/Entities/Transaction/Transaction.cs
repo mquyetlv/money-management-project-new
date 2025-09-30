@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
+﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace money_management_service.Entities.Transaction
 {
@@ -26,5 +27,8 @@ namespace money_management_service.Entities.Transaction
         public Guid InvestmentId { get; set; }
 
         public Investment Investment { get; set; }
+
+        [Timestamp]  // hoặc .IsRowVersion() trong Fluent API
+        public byte[] RowVersion { get; set; }
     }
 }
