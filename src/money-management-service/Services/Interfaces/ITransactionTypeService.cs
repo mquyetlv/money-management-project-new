@@ -4,5 +4,6 @@ namespace money_management_service.Services.Interfaces
 {
     public interface ITransactionTypeService : IBaseService<TransactionType>
     {
+        Task<bool> ExistsAsync(Guid id, CancellationToken cancel);
     }
 }
