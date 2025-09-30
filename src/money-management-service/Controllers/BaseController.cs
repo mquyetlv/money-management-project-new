@@ -5,7 +5,7 @@ namespace money_management_service.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    [Authorize]
+    //[Authorize]
     public class BaseController : ControllerBase
     {
     }

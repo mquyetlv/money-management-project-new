@@ -58,14 +58,14 @@ namespace money_management_service.Services
             return entity;
         }
 
-        public async Task<TEntity> CreateAsync(TEntity entity)
+        virtual public async Task<TEntity> CreateAsync(TEntity entity)
         {
             await _dbSet.AddAsync(entity);
             await _dbContext.SaveChangesAsync();
             return entity;
         }
 
-        public async Task<TEntity> DeleteByIdAsync(TKey id)
+        virtual public async Task<TEntity> DeleteByIdAsync(TKey id)
         {
             TEntity entity = await _dbSet.FindAsync(id);
             if (entity == null)
@@ -78,7 +78,7 @@ namespace money_management_service.Services
             return entity;
         }
 
-        public async Task<TEntity> UpdateAsync(TKey id, Dictionary<string, object> updateFields)
+        virtual public async Task<TEntity> UpdateAsync(TKey id, Dictionary<string, object> updateFields)
         {
             TEntity entity = await _dbSet.FindAsync(id);
             var entry = _dbSet.Entry(entity);

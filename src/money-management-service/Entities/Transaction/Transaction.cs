@@ -24,11 +24,11 @@ namespace money_management_service.Entities.Transaction
 
         public Accounts Accounts { get; set; }
 
-        public Guid InvestmentId { get; set; }
+        public Guid? InvestmentId { get; set; }
 
         public Investment Investment { get; set; }
 
-        [Timestamp]  // hoặc .IsRowVersion() trong Fluent API
+        [Timestamp]
         public byte[] RowVersion { get; set; }
     }
 }

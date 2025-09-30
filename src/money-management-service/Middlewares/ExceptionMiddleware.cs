@@ -1,4 +1,5 @@
 ﻿
+using money_management_service.Exceptions;
 using System.Net;
 using System.Text.Json;
 
@@ -11,6 +12,22 @@ namespace money_management_service.Middlewares
             try
             {
                 await next(context);
+            }
+
+            catch (NotFoundException ex)
+            {
+                {
+                    context.Response.StatusCode = (int)HttpStatusCode.BadRequest;
+                    context.Response.ContentType = "application/json";
+
+                    var response = new
+                    {
+                        success = false,
+                        message = ex.Message
+                    };
+
+                    await context.Response.WriteAsJsonAsync(response);
+                }
             }
 
             catch (Exception ex)
