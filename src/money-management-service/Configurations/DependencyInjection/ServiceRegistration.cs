@@ -14,6 +14,7 @@ namespace money_management_service.Configurations.DependencyInjection
             services.AddScoped<IUsersService, UsersService>();
             services.AddScoped<IAuthencationService, AuthencationService>();
             services.AddScoped<ITransactionTypeService, TransactionTypeService>();
+            services.AddScoped<IInvestmentsService, InvestmentsService>();
 
             return services;    
         }
