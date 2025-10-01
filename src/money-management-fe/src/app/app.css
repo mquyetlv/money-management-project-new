@@ -1,0 +1,12 @@
+.main-content {
+    position: absolute;
+    top: var(--header-height);
+    left: var(--side-bar-width);
+    right: 0;
+    bottom: 0;
+    margin: 24px;
+    border-radius: 12px;
+    background-color: var(--background-color);
+    
+    box-shadow: 1px 1px 8px rgba(0, 0, 0, 0.2);
+}

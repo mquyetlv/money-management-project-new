@@ -1,0 +1,9 @@
+.side-bar {
+    position: fixed;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: var(--side-bar-width);
+    background-color: var(--background-color);
+    box-shadow: 1px 0 8px rgba(0, 0, 0, 0.2);
+}

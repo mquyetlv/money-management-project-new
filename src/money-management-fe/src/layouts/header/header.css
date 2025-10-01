@@ -1,0 +1,9 @@
+.header {
+    position: fixed;
+    height: var(--header-height);
+    top: 0;
+    right: 0;
+    left: var(--side-bar-width);
+    background-color: var(--background-color);
+    box-shadow: 8px 1px 8px rgba(0, 0, 0, 0.2);
+}

@@ -1,4 +1,10 @@
-<h1 class="text-3xl font-bold underline">
-  Hello world!
-</h1>
-<ion-icon name="heart-outline"></ion-icon>
+<div class="flex">
+  <app-side-bar />
+  
+  <div>
+    <app-header />
+    <div class="main-content">
+      <router-outlet />
+    </div>
+  </div>
+</div>
