@@ -6,4 +6,96 @@
     left: var(--side-bar-width);
     background-color: var(--background-color);
     box-shadow: 8px 1px 8px rgba(0, 0, 0, 0.2);
+    padding: 0 28px;
+    z-index: 999;
+}
+
+.icon-header {
+    font-size: 20px;
+    padding: 0 12px;
+    display: inline-block;
+    height: 26px;
+    display: flex;
+    align-items: center;
+}
+
+.seperate {
+    display: inline-block;
+    height: 20px;
+    width: 1px;
+    background-color: #ccc;
+}
+
+.user-info {
+    cursor: pointer;
+    position: relative;
+}
+
+.user-info:hover .wrap-pannel {
+    max-height: 500px;
+}
+
+.wrap-pannel {
+    max-height: 0;
+    transition: all 0.8s linear;
+    overflow: hidden;
+    position: absolute;
+    top: calc(100% + 10px);
+    right: -8px;
+    box-shadow: var(--box-shadown);
+    background-color: var(--background-color);
+    border-radius: 4px;
+}
+
+.user-info-option-pannel {
+    padding: 12px 4px;
+}
+
+.option {
+    padding: 4px 12px;
+    border-bottom: 1px solid #ccc;
+    width: 180px;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    border-radius: 2px;
+}
+
+.user-info-option-pannel::before {
+    content: "";
+    display: inline-block;
+    position: absolute;
+    top: -15px;
+    height: 20px;
+    left: 0;
+    right: 0;
+}
+
+.option  + .option {
+    margin-top: 6px;
+}
+
+.option:hover {
+    color: var(--primary-color);
+    border-color: currentColor;
+}
+
+.user-avartar {
+    height: 40px;
+    width: auto;
+    border-radius: 50%;
+    object-fit: contain;
+    object-position: center;
+}
+
+.user-name, .user-role {
+    line-height: 1;
+}
+
+.user-name {
+    font-size: 14px;
+}
+
+.user-role {
+    font-size: 12px;
 }
