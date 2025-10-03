@@ -8,5 +8,9 @@ export const routes: Routes = [
     {
         path: '',
         loadChildren: () => import('../modules/transactions/transactions.routes').then(m => m.transactionsRoutes),
+    },
+    {
+        path: 'management/level3/test1',
+        loadChildren: () => import('../modules/transactions/transactions.routes').then(m => m.transactionsRoutes),
     }
 ];
