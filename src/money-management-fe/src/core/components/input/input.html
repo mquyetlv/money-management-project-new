@@ -1,0 +1,12 @@
+<div class="relative">
+  <input
+    type="text"
+    class="input"
+    [placeholder]="placeholder"
+    [maxLength]="maxlength"
+    [class]="{ 'has-icon': !!icon }"
+  />
+  @if (icon) {
+  <ion-icon class="icon" [name]="icon"></ion-icon>
+  }
+</div>

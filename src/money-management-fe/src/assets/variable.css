@@ -2,4 +2,12 @@
     --side-bar-width: 240px;
     --header-height: 80px;
     --background-color: #fff;
+    --box-shadown: 0px 1px 8px rgba(0, 0, 0, 0.2);
+    --primary-color: #407F3E;
+    --second-color: #89B449;
+    --border-color: #ccc;
+
+/* #DBD468
+#E7E0C4
+#E68A8C */
 }

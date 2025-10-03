@@ -1,0 +1,27 @@
+.input {
+    border: 1px solid var(--border-color);
+    outline: none;
+    border-radius: 4px;
+    font-size: 14px;
+    padding: 4px 12px;
+    line-height: 1;
+}
+
+input::placeholder {
+    color: #ccc;
+    font-style: italic;
+}
+
+.input.has-icon {
+    padding-right: 30px;
+}
+
+.icon {
+    position: absolute;
+    right: 0;
+    font-size: 18px;
+    right: 6px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #5c5c5c;
+}
