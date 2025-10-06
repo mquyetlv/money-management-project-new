@@ -18,10 +18,10 @@
       <tr>
         <td class="text-center">{{ index + 1 }}</td>
         @for (column of colums; track $index) {
-        <td 
-            [class]="column.columnClass" 
-            [style.textAlign]="column.align || 'left'"
-            [style.minWidth]="column.width || 'auto'"
+        <td
+          [class]="column.columnClass"
+          [style.textAlign]="column.align || 'left'"
+          [style.minWidth]="column.width || 'auto'"
         >
           {{ rowData[column.key] }}
         </td>
@@ -30,4 +30,8 @@
       }
     </tbody>
   </table>
+</div>
+
+<div class="pagination">
+  <mon-pagination />
 </div>
