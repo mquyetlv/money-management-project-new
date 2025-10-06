@@ -1,20 +1,33 @@
-
 <div class="wrap-table">
-    <table>
-        <thead>
-            <th>STT</th>
-            @for (colum of colums; track $index) {
-                <th>{{ colum.headerName }}</th>
-            }
-        </thead>
+  <table>
+    <thead>
+      <th class="text-center">STT</th>
+      @for (column of colums; track $index) {
+      <th
+        [class]="column.headerClass"
+        [style.minWidth]="column.width || 'auto'"
+        [style.textAlign]="column.align || 'left'"
+      >
+        {{ column.headerName }}
+      </th>
+      }
+    </thead>
 
-        <tbody>
-            @for (rowData of data; let index = $index; track rowData.id) {
-                <td>{{ index + 1 }}</td>
-                @for (column of colums; track $index) {
-                    <td>{{ rowData[column.key] }}</td>
-                }
-            }
-        </tbody>
-    </table>
+    <tbody>
+      @for (rowData of data; let index = $index; track rowData.id) {
+      <tr>
+        <td class="text-center">{{ index + 1 }}</td>
+        @for (column of colums; track $index) {
+        <td 
+            [class]="column.columnClass" 
+            [style.textAlign]="column.align || 'left'"
+            [style.minWidth]="column.width || 'auto'"
+        >
+          {{ rowData[column.key] }}
+        </td>
+        }
+      </tr>
+      }
+    </tbody>
+  </table>
 </div>
